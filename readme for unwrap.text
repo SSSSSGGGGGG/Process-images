@@ -1,0 +1,12 @@
+This file is for unwrap file, which is for unwrap the phase value in the range of 0-2pi.
+1. We need to process the target .xls file, where the intensity for orthognal polarzations are saved, the original average intensity are retrieved by bathReadImage.py.
+2. at first, we use two colums of intensity in the target file to calculate the phase retardance for different voltage/gray level.
+3. Once we have the retardance, we compare the last value with the last second one. We regulate the last retardance is lower than the last second one, if not, we change the column of square root.
+at the beginning, the squirt is the func of Ic/Ip. To make sure of our condition, we change the current formula to a squirt of Ip/Ic.
+4. Improtantly, we need to change the 0s in the columns of normalized intensities to 0.1e-30, which is for avoiding infinite division.
+5. To calculate how many peak and valley retardants in the wrap phase column, we assign this col to an array.
+6. The syntax of the peak is that arr[j] is higher than both arr[j-1] and arr[j+1]. In turn, the valley is defined by the fact that arr[j] is smaller than both arr[j-1] and arr[j+1].
+7. Now we have saved the index for the peak and valley retardance in peak[] and valleies[],we calculate the summation of peak[] and valleies[], that we will know how many differnt ranges we need to expand our wrap phase.
+9. For example, in one case, we have 2 peaks and 1 valley. Normally, we unwrap the phase from the high voltage/gray level. Correspondingly, the last value (index) in peak[] is the highest value, so for the first range of unwrap phase, the phase
+values are equivalent to the wrap phase up to the last "index" in peak[]. Next, the phase retardance in the range of the last "index" of peak[] and the only "index" of valleies[] equals to 2-wrap phase.
+From this "index" to the first "index" of peak[], the unwrapped phase is equivalent to the 2+ wrap phase.
