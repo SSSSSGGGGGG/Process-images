@@ -10,8 +10,8 @@ from openpyxl import workbook, load_workbook
 from openpyxl.chart import ScatterChart, Reference, Series
 from openpyxl.chart import Reference as opyxlReference
 
-os.chdir("C:/Users/Laboratorio/AutoMeasureLCwithPolorizationCamera/0frames0.2p0.3")
-filename="f0s0.2p0.5.xlsx"
+os.chdir("C:/Users/Laboratorio/scitificCalculation/imageHub/b")
+filename="b.xlsx"
 wb=load_workbook(filename)
 ws=wb.active
 ws['D1'] = "I (c)-BG"
@@ -24,7 +24,7 @@ ws['K1'] = "2*ATAN"
 ws['L1'] = "phase(π)"
 
 i=2
-while i<103:
+while i<19:
     ws[f'D{i}'] = f"=B{i}-MIN(B:B)"
     ws[f'E{i}'] = f"=C{i}-MIN(C:C)"
     ws[f'F{i}'] = f"=E{i}+D{i}"
